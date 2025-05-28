@@ -2,17 +2,18 @@
 #include <iostream>
 #include <string>
 
-void showHelp(){
+void showHelp() {
     std::cout << "Available commands:\n"
-              << "  add <task>         - Adds a new task \n"
-              << "  list                 - List all the tasks\n"
-              << "  done <número>        - Marks a task as done\n"
-              << "  remove <número>      - Removes a task\n"
-              << "  help                 - Show help menu\n";
+              << "  add <task>           - Add a new task\n"
+              << "  list                 - List all tasks\n"
+              << "  done <number>        - Mark a task as done\n"
+              << "  remove <number>      - Remove a task\n"
+              << "  help                 - Show this help message\n";
 }
 
 int main(int argc, char* argv[]) {
     TaskManager manager;
+    manager.loadFromFile("tasks.txt");
 
     if (argc < 2) {
         showHelp();
@@ -33,5 +34,6 @@ int main(int argc, char* argv[]) {
         showHelp();
     }
 
+    manager.saveToFile("tasks.txt");
     return 0;
 }
